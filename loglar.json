@@ -6,7 +6,7 @@
     "Islem": "GorevTamamlama",
     "KullaniciId": 2,
     "KullaniciAdi": "mehmet123",
-    "Mesaj": "Görev baþarýyla tamamlandý ve onaylandý",
+    "Mesaj": "Gï¿½rev baï¿½arï¿½yla tamamlandï¿½ ve onaylandï¿½",
     "DetaylarJSON": "{\"gorevId\":1,\"deneyim\":150,\"seviyeAtladi\":true}",
     "IPAdresi": "192.168.1.100",
     "Cihaz": "Windows PC"
