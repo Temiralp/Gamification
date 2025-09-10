@@ -1,0 +1,29 @@
+Program Amacı:
+Yöneticilerin görev atadığı, çalışanların görevleri tamamlayarak deneyim kazandığı 
+ve seviye atlattığı gamification sistemi!
+
+ GÖREV & SEVİYE YÖNETİM SİSTEMİ
+
+
+1. Kullanıcı Girişi
+2.  Yönetici İşlemleri
+   - Görev Oluştur
+   - Görev Ata 
+ 
+   - Çalışan Listesi
+   - Deneyim Ver
+3.  Çalışan İşlemleri
+   - Görevlerimi Görüntüle
+   - Görev Tamamla
+
+   - Seviye Durumu
+   - Deneyim Geçmişi
+4.  Raporlar
+   - Seviye Sıralaması
+    - Görev İstatistikleri
+    - Deneyim Raporu
+
+5.   Sistem Yönetimi 
+   -Program sınıfının yönetimi
+   -test süreçleri
+6.   Çıkış

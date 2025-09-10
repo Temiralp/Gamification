@@ -1,0 +1,23 @@
+[
+  {
+    "Id": 1,
+    "GorevAdi": "Login Sayfas� Tasar�m�",
+    "Aciklama": "Kullan�c� giri� sayfas�n�n frontend tasar�m�n� yap",
+    "Kategori": "Frontend",
+    "Zorluk": "Orta",
+    "DeneyimPuani": 150,
+    "AtananCalisanId": 2,
+    "AtayanYoneticiId": 1,
+    "OlusturulmaTarihi": "2025-01-10T09:00:00",
+    "BaslangicTarihi": "2025-01-11T09:00:00",
+    "BitisTarihi": "2025-01-15T17:00:00",
+    "TamamlanmaTarihi": null,
+    "Durum": "Devam Ediyor",
+    "OnayDurumu": "Onay Bekliyor",
+    "CalisanNotu": "",
+    "YoneticiNotu": "",
+    "TahminiSure": 4,
+    "GerekliYetenekler": [ "HTML", "CSS", "JavaScript" ],
+    "OncelikSeviyesi": 3
+  }
+]

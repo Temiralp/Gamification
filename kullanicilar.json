@@ -1,0 +1,22 @@
+[
+  {
+    "Id": 1,
+    "KullaniciAdi": "admin",
+    "AdSoyad": "Ahmet Yýlmaz",
+    "Email": "ahmet@sirket.com",
+    "Sifre": "123456",
+    "Rol": "Yonetici",
+    "Aktif": true,
+    "KayitTarihi": "2024-01-01T09:00:00",
+    "SonGirisZamani": "2025-01-15T14:30:00",
+    "Departman": "IT",
+    "Pozisyon": "IT Müdürü",
+    "YonetilenCalisanlar": [ 2, 3, 4 ],
+    "OlusturulanGorevSayisi": 15,
+    "OnaylananGorevSayisi": 12,
+    "YetkiSeviyesi": "Genel"
+
+
+  }
+
+]

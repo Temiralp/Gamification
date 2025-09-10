@@ -1,0 +1,16 @@
+[
+  {
+    "Id": 1,
+    "CalisanId": 2,
+    "GorevId": 1,
+    "KazanilanDeneyim": 150,
+    "DeneyimTipi": "Gorev",
+    "Aciklama": "Login sayfasý tasarýmý tamamlandý",
+    "Tarih": "2025-01-15T09:15:00",
+    "VerenYoneticiId": 1,
+    "OncekiSeviye": 7,
+    "SonrakiSeviye": 8,
+    "SeviyeAtladiMi": true,
+    "Kategori": "Frontend"
+  }
+]

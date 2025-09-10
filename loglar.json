@@ -1,0 +1,14 @@
+[
+  {
+    "Id": 1,
+    "Tarih": "2025-01-15T09:15:00",
+    "LogTipi": "Success",
+    "Islem": "GorevTamamlama",
+    "KullaniciId": 2,
+    "KullaniciAdi": "mehmet123",
+    "Mesaj": "Görev baþarýyla tamamlandý ve onaylandý",
+    "DetaylarJSON": "{\"gorevId\":1,\"deneyim\":150,\"seviyeAtladi\":true}",
+    "IPAdresi": "192.168.1.100",
+    "Cihaz": "Windows PC"
+  }
+]

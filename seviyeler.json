@@ -1,0 +1,14 @@
+﻿[
+  {
+    "SeviyeNo": 1,
+    "SeviyeAdi": "Acemi",
+    "GerkenDeneyim": 0,
+    "Renk": "#808080",
+    "Ikon": "🌱",
+    "KazanilanYetkiler": [ "Temel Görevler" ],
+    "BonusDeneyimMultiplier": 1,
+    "Aciklama": "Yeni başlayan seviye",
+    "OzelSeviyeMi": false,
+    "KazanilanRozetler": []
+  }
+]
