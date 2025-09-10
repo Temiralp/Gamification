@@ -1,63 +1,50 @@
 ﻿using System.Text.Json;
 
-
 class Program
 {
+    static List<string> gorevler;
+
     static void Main()
     {
-                
-    }
-    static void GorevlerimiGoruntule(int calisanId)
-    {
-        string json = File.ReadAllText("gorevler.json");
-               
-        List<Dictionary<string, string>> gorevler = JsonSerializer.Deserialize<List<Dictionary<string, string>>>(json);
-            
-        foreach (Dictionary<string, string> gorev in gorevler)
-        {
-            if (int.Parse(gorev["CalisanId"].ToString()) == calisanId)
-            {
 
-                Console.WriteLine("Id: " + gorev["Id"]);
-                Console.WriteLine("Ad: " + gorev["Ad"]);
-                Console.WriteLine("Durum: " + gorev["Durum"]);
-               
-            }
+    }
+
+
+    public static void GorevlerimiGoruntule()
+    {
+        Console.WriteLine("Görevleriniz : ");
+        if (gorevler.Count == 0)
+        {
+            Console.WriteLine("Henüz görev yok");
+            return;
+        }
+
+        for (int i = 0; i < gorevler.Count; i++)
+        {
+            Console.WriteLine((i + 1) + "  " + gorevler[i]);
         }
     }
 
 
-
-    static void GorevTamamla(int calisanId)
+    public static void GorevTamamla()
     {
-        string json = File.ReadAllText("gorevler.json");
-                
-        List<Dictionary<string, string>> gorevler = JsonSerializer.Deserialize<List<Dictionary<string, string>>>(json);
-            
-        Console.Write("Tamamlanacak gorev ID: ");
-        int id = int.Parse(Console.ReadLine());
-
-        bool bulundu = false;
-
-        foreach (Dictionary<string, string> g in gorevler)
+        if (gorevler.Count == 0)
         {
-            if (int.Parse(g["Id"].ToString()) == id &&
-                int.Parse(g["CalisanId"].ToString()) == calisanId)
-            {
-                g["Durum"] = "Tamamlandı";
-                bulundu = true;
-            }
+            Console.WriteLine("Henüz görev yok");
+            return;
         }
 
-        if (bulundu)
+        Console.Write("Tamamlanacak görev numarası : ");
+        
+        int numara = int.Parse(Console.ReadLine());
+        if (numara > 0 && numara <= gorevler.Count)
         {
-            string yeniJson = JsonSerializer.Serialize(gorevler);
-            File.WriteAllText("gorevler.json", yeniJson);
-            Console.WriteLine("Gorev tamamlandı!");
+            Console.WriteLine(gorevler[numara - 1] + " tamamlandı");
+            gorevler.RemoveAt(numara - 1);
         }
         else
         {
-            Console.WriteLine("Gorev bulunamadı.");
+            Console.WriteLine("Geçersiz numara");
         }
     }
 
