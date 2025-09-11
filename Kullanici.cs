@@ -164,6 +164,76 @@
 
     public static void KullaniciSil()
     {
+        Console.WriteLine("Lütfen silmek istediğiniz kullanıcının ID'sini girin: ");
+        int silinecekId = int.Parse(Console.ReadLine());
 
+        string okunanVeri = File.ReadAllText("kullanicilar.json");
+
+        List<Kullanici> kullanicilar = JsonSerializer.Deserialize<List<Kullanici>>(okunanVeri);
+
+        if(kullanicilar == null)
+            {
+            kullanicilar = new List<Kullanici>();
+            }
+        Console.WriteLine("Kullanıcı sayısı (önce): " + kullanicilar.Count);
+
+        int silinecekIndex = -1;
+
+        for(int i = 0; i < kullanicilar.Count; i++)
+            {
+            if(kullanicilar[i].Id == silinecekId)
+                {
+                silinecekIndex = i;
+                break;
+                }
+
+            }
+
+        if(silinecekIndex != -1)
+            {
+            // Kullanıcı bilgilerini göster
+            Kullanici kisi = kullanicilar[silinecekIndex];
+            Console.WriteLine("Silinecek Kullanıcı Bilgileri:");
+            Console.WriteLine("ID: " + kisi.Id);
+            Console.WriteLine("Ad Soyad: " + kisi.AdSoyad);
+            Console.WriteLine("Email: " + kisi.Email);
+            Console.WriteLine("Pozisyon: " + kisi.Pozisyon);
+            Console.WriteLine("Departman: " + kisi.Departman);
+            Console.WriteLine("Rol: " + kisi.Rol);
+
+
+            // onay icin
+            Console.Write("Bu kişiyi silmek istediğinizden emin misiniz? (evet/hayir): ");
+            string onay = Console.ReadLine().ToLower();
+
+            if(onay == "evet")
+                {
+                kullanicilar.RemoveAt(silinecekIndex);
+
+                var options = new JsonSerializerOptions
+                    {
+                    WriteIndented = true,
+                    Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+                    };
+
+                //jsona cevir ve dosyaya yaz(UTF-8 ile)
+                string donusenVeri = JsonSerializer.Serialize(kullanicilar, options);
+
+                File.WriteAllText("kullanicilar.json", donusenVeri, System.Text.Encoding.UTF8);
+
+                Console.WriteLine("Kullanıcı başarıyla silindi.");
+
+                }
+
+            else
+                {
+                Console.WriteLine("Silme işlemi iptal edildi.");
+                }
+            }
+        else
+            {
+            Console.WriteLine("Belirtilen ID ile kullanıcı bulunamadı.");
+            }
+
+        }
     }
-}
