@@ -74,6 +74,92 @@
     Console.WriteLine ("Yeni kullanıcı başarıyla eklendi.");
     }
 
+    public static void JsonaYaz()
+        {
+        //Listeyi json a cevir
+        List<Kullanici> kullanicilar = new List<Kullanici>();
+        string donusenVeri = JsonSerializer.Serialize(kullanicilar, new JsonSerializerOptions { WriteIndented = true });
+        File.WriteAllText("kullanicilar.json", donusenVeri);
+        }
+
+    public static void JsonOku()
+        {
+        //Json dosyasini oku
+        string okunanVeri = File.ReadAllText("kullanicilar.json");
+        List<Kullanici> kullanicilar = new List<Kullanici>();
+        kullanicilar = JsonSerializer.Deserialize<List<Kullanici>>(okunanVeri);
+        }
+
+    public static void Login()
+        {
+        int denemeHakki = 5;
+        bool girisBasarili = false;
+
+        // JSON'u oku (dosya yoksa boş liste oluştur)
+        List<Kullanici> kullanicilar;
+        if(File.Exists("kullanicilar.json"))
+            {
+            string okunanVeri = File.ReadAllText("kullanicilar.json");
+            if(string.IsNullOrWhiteSpace(okunanVeri))
+                {
+                kullanicilar = new List<Kullanici>();
+                }
+            else
+                {
+                kullanicilar = JsonSerializer.Deserialize<List<Kullanici>>(okunanVeri);
+                }
+            }
+        else
+            {
+            kullanicilar = new List<Kullanici>();
+            }
+
+        while(denemeHakki > 0 && girisBasarili == false)
+            {
+            Console.WriteLine("Kullanici Adi: ");
+            string girilenKullaniciAdi = Console.ReadLine();
+
+            Console.WriteLine("Sifre: ");
+            string girilenSifre = Console.ReadLine();
+
+            //eslesme ara
+            int bulunanIndex = -1;
+            for(int i = 0; i < kullanicilar.Count; i++)
+                {
+                if(kullanicilar[i].KullaniciAdi == girilenKullaniciAdi && kullanicilar[i].Sifre == girilenSifre)
+                    {
+                    bulunanIndex = i;
+                    break;
+                    }
+                }
+
+            if(bulunanIndex != -1)
+                {
+                girisBasarili = true;
+
+                Console.WriteLine("Giriş başarılı. Hoş geldiniz, " + kullanicilar[bulunanIndex].AdSoyad + "!");
+
+                //son giris zamani guncellemesi
+                kullanicilar[bulunanIndex].SonGirisZamani = DateTime.Now;
+
+                JsonaYaz();
+                }
+            else
+                {
+                denemeHakki = denemeHakki - 1;
+                if(denemeHakki > 0)
+                    {
+                    Console.WriteLine("Yanlış kullanıcı adı ve/veya şifre. Lütfen tekrar deneyin. Kalan deneme: " + denemeHakki);
+                    }
+                else
+                    {
+                    Console.WriteLine("Yanlış bilgiler 5 kez girildi. Giriş başarısız.");
+                    }
+                }
+            }
+
+        }
+
 
 
     public static void KullaniciSil()
