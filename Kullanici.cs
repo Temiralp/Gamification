@@ -160,8 +160,6 @@
 
         }
 
-
-
     public static void KullaniciSil()
     {
         Console.WriteLine("Lütfen silmek istediğiniz kullanıcının ID'sini girin: ");
@@ -236,4 +234,60 @@
             }
 
         }
+
+    public static void KullaniciBilgileriniGoster()
+
+        {
+        Console.Write("Lütfen görüntülemek istediğiniz kullanıcının ID'sini girin: ");
+        int arananId = int.Parse(Console.ReadLine());
+
+        string okunanVeri = File.ReadAllText("kullanicilar.json");
+        List<Kullanici> kullanicilar = JsonSerializer.Deserialize<List<Kullanici>>(okunanVeri);
+
+        if(kullanicilar == null)
+            {
+            kullanicilar = new List<Kullanici>();
+            }
+
+        int bulunanIndex = -1;
+
+        for(int i = 0; i < kullanicilar.Count; i++)
+            {
+            if(kullanicilar[i].Id == arananId)
+                {
+                bulunanIndex = i;
+                break;
+                }
+            }
+
+        if(bulunanIndex != -1)
+            {
+            Kullanici kisi = kullanicilar[bulunanIndex];
+            Console.WriteLine("Kullanıcı Bilgileri:");
+            Console.WriteLine("ID: " + kisi.Id);
+            Console.WriteLine("Kullanıcı Adı: " + kisi.KullaniciAdi);
+            Console.WriteLine("Ad Soyad: " + kisi.AdSoyad);
+            Console.WriteLine("Email: " + kisi.Email);
+            Console.WriteLine("Rol: " + kisi.Rol);
+            Console.WriteLine("Aktif: ");
+            if(kisi.Aktif == true)
+                {
+                Console.WriteLine("Evet");
+                }
+            else
+                {
+                Console.WriteLine("Hayır");
+                }
+            Console.WriteLine("Kayıt Tarihi: " + kisi.KayitTarihi);
+            Console.WriteLine("Son Giriş Zamanı: " + kisi.SonGirisZamani);
+            Console.WriteLine("Departman: " + kisi.Departman);
+            Console.WriteLine("Pozisyon: " + kisi.Pozisyon);
+            }
+        else
+            {
+            Console.WriteLine("Belirtilen ID ile kullanıcı bulunamadı.");
+            }
+        }
+
+
     }
