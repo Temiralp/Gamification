@@ -289,5 +289,94 @@
             }
         }
 
+    public static void KullaniciBilgileriniGuncelle()
+        {
 
+        Console.Write("Lütfen güncellemek istediğiniz kullanıcının ID'sini girin: ");
+        int guncellenecekId = int.Parse(Console.ReadLine());
+
+        string okunanVeri = File.ReadAllText("kullanicilar.json");
+        List<Kullanici> kullanicilar = JsonSerializer.Deserialize<List<Kullanici>>(okunanVeri);
+
+        if(kullanicilar == null)
+            {
+            kullanicilar = new List<Kullanici>();
+            }
+
+        int bulunanIndex = -1;
+
+        for(int i = 0; i < kullanicilar.Count; i++)
+            {
+            if(kullanicilar[i].Id == guncellenecekId)
+                {
+                bulunanIndex = i;
+                break;
+                }
+            }
+
+        if(bulunanIndex != -1)
+            {
+            Kullanici kisi = kullanicilar[bulunanIndex];
+
+            Console.WriteLine("Mevcut Bilgiler:");
+            Console.WriteLine("Ad Soyad: " + kisi.AdSoyad);
+            Console.WriteLine("Email: " + kisi.Email);
+            Console.WriteLine("Pozisyon: " + kisi.Pozisyon);
+            Console.WriteLine("Departman: " + kisi.Departman);
+
+            Console.WriteLine("Yeni bilgileri girin (değiştirmek istemiyorsanız Enter'a basın):");
+
+            Console.WriteLine("Yeni Kullanici Adi: ");
+            string yeniKullaniciAdi = Console.ReadLine();
+            if(!string.IsNullOrWhiteSpace(yeniKullaniciAdi))
+                {
+                kisi.KullaniciAdi = yeniKullaniciAdi;
+                }
+
+            Console.WriteLine("Yeni Email: ");
+            string yeniEmail = Console.ReadLine();
+            if(!string.IsNullOrWhiteSpace(yeniEmail))
+                {
+                kisi.Email = yeniEmail;
+                }
+
+            Console.WriteLine("Yeni Rol: ");
+            string yeniRol = Console.ReadLine();
+            if(!string.IsNullOrWhiteSpace(yeniRol))
+                {
+                kisi.Rol = yeniRol;
+                }
+
+            Console.Write("Yeni Pozisyon: ");
+            string yeniPozisyon = Console.ReadLine();
+            if(!string.IsNullOrWhiteSpace(yeniPozisyon))
+                {
+                kisi.Pozisyon = yeniPozisyon;
+                }
+
+            Console.Write("Yeni Departman: ");
+            string yeniDepartman = Console.ReadLine();
+            if(!string.IsNullOrWhiteSpace(yeniDepartman))
+                {
+                kisi.Departman = yeniDepartman;
+                }
+
+            var options = new JsonSerializerOptions
+                {
+                WriteIndented = true,
+                Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+                };
+
+            string donusenVeri = JsonSerializer.Serialize(kullanicilar, options);
+            File.WriteAllText("kullanicilar.json", donusenVeri, System.Text.Encoding.UTF8);
+
+            Console.WriteLine("Kullanıcı bilgileri başarıyla güncellendi.");
+
+            }
+        else
+            {
+            Console.WriteLine("Belirtilen ID ile kullanıcı bulunamadı.");
+            }
+
+        }
     }
