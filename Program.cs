@@ -1,24 +1,76 @@
-﻿using System.Text.Json;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text.Json;
+
+
+public class Kullanici
+{
+    public string AdSoyad { get; set; }
+    public int TamamlananGorevSayisi { get; set; }
+    public int AktifGorevSayisi { get; set; }
+}
+
+public class JsonVeriIsleyici
+{
+    public static List<Kullanici> KullanicilariYukle(string dosyaYolu)
+    {
+       
+        string jsonMetni = File.ReadAllText(dosyaYolu);
+        List<Kullanici> kullanicilar = JsonSerializer.Deserialize<List<Kullanici>>(jsonMetni);
+        return kullanicilar;
+    }
+}
+
+
+public class GorevIstatistikleri
+{
+    public static void RaporuGoster(Kullanici kullanici)
+    {
+        Console.WriteLine($"--- {kullanici.AdSoyad} - Görev İstatistikleri ---");
+        Console.WriteLine($"Toplam Tamamlanan Görev Sayısı: {kullanici.TamamlananGorevSayisi}");
+        Console.WriteLine($"Toplam Aktif Görev Sayısı: {kullanici.AktifGorevSayisi}");
+        Console.WriteLine("-----------------------------");
+    }
+}
+
 
 class Program
 {
-
-    static void Main()
+    
+    static void IstatistikleriGoster()
     {
-        Gorevler gorev1 = new Gorevler();
-        string okunanVeri =  File.ReadAllText("test.json");
-        gorev1= JsonSerializer.Deserialize<Gorevler>(okunanVeri);
+        string dosyaYolu = "kullanicilar.json";
+        List<Kullanici> tumKullanicilar = JsonVeriIsleyici.KullanicilariYukle(dosyaYolu);
 
-        Console.WriteLine(gorev1.gorevBaslik);
-        gorev1.gorevMetni = "";
-        string jsonVeri = JsonSerializer.Serialize(gorev1);
-        File.WriteAllText("test.json", jsonVeri);
+        if (tumKullanicilar.Any())
+        {
+            Console.Write("Lütfen adınızı ve soyadınızı girin: ");
+            string girisYapacakKullaniciAdi = Console.ReadLine();
 
-        //Görev başlığını güncelleyin yeniden yazdırın
+            Kullanici aktifKullanici = tumKullanicilar.FirstOrDefault(k => k.AdSoyad.ToLower() == girisYapacakKullaniciAdi.ToLower());
 
+            if (aktifKullanici != null)
+            {
+                GorevIstatistikleri.RaporuGoster(aktifKullanici);
+            }
+            else
+            {
+                Console.WriteLine("Kullanıcı bulunamadı. Lütfen tekrar bir isim girin.");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Program sonlandırılıyor.");
+        }
 
-
-
+        Console.ReadLine();
     }
 
+   
+    static void Main(string[] args)
+    {
+        IstatistikleriGoster();
+    }
 }
