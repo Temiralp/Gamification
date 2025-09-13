@@ -31,6 +31,7 @@ class Program
         if (gorevler.Count == 0)
         {
             Console.WriteLine("Henüz görev yok");
+            Console.WriteLine("Kullanıcı seviyesini göster");
             return;
         }
 
