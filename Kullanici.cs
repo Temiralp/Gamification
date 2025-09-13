@@ -6,7 +6,6 @@ public class Kullanici
     public string Email { get; set; }
     public string Rol {  get; set; }
     public string Sifre {  get; set; }
-
     public bool Aktif { get; set; }
     public DateTime KayitTarihi { get; set; } = DateTime.Now;
     public DateTime SonGirisZamani { get; set; }

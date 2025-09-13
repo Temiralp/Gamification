@@ -5,41 +5,7 @@ using System.Linq;
 using System.Text.Json;
 
 
-public class Kullanici
-{
-    public string AdSoyad { get; set; }
-    public int TamamlananGorevSayisi { get; set; }
-    public int AktifGorevSayisi { get; set; }
-    public int Id { get; set; }
-    public string KullaniciAdi { get; set; }
-    public string Email { get; set; }
-    public string Rol { get; set; }
-    public string Sifre { get; set; }
-    public bool Aktif { get; set; }
-    public DateTime KayitTarihi { get; set; } = DateTime.Now;
-    public DateTime SonGirisZamani { get; set; }
-    public string Departman { get; set; }
-    public string Pozisyon { get; set; }
-}
 
-public class Gorev
-{
-    public int Id { get; set; }
-    public string GorevAdi { get; set; }
-    public string Aciklama { get; set; }
-    public string Kategori { get; set; }
-    public string Zorluk { get; set; }
-    public int DeneyimPuani { get; set; }
-    public int AtananCalisanId { get; set; }
-}
-
-public class Calisan : Kullanici
-{
-    public int ToplamDeneyim { get; set; }
-    public int MevcutSeviye { get; set; }
-    public int YoneticiId { get; set; }
-    public List<int> Rozet { get; set; }
-}
 
 
 public class JsonVeriIsleyici
@@ -62,8 +28,7 @@ public class JsonVeriIsleyici
 }
 
 
-{
-  
+
 
 
 
