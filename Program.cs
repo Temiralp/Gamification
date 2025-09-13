@@ -98,8 +98,17 @@ class Program
     // EKLENEN ÖZELLİKLER TESTİ - manuel olarak test edilmektedir.
     static void OzelliklerTesti()
     {
+
+        if (gorevler.Count == 0)
+        {
+            Console.WriteLine("Henüz görev yok");
+            Console.WriteLine("Kullanıcı seviyesini göster");
+            return;
+        }
+
         Console.Clear();
         Console.WriteLine("EKLENEN ÖZELLİKLER TESTİ");
+
 
         int toplam = 0, gecti = 0;
 
